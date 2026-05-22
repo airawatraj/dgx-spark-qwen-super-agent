@@ -88,10 +88,6 @@ Where the 120B model scored 93/100 (struggling slightly with parameter precision
 
 This table tracks the performance leap achieved by migrating from the 120B Nemotron/vLLM stack to the 35B Qwen/Atlas stack on the exact same DGX Spark hardware.
 
-## Comparison With My Nemotron Run
-
-This table tracks the performance leap achieved by migrating from the 120B Nemotron/vLLM stack to the 35B Qwen/Atlas stack on the exact same DGX Spark hardware.
-
 | Metric | Nemotron-120B (vLLM) | Qwen 3.6-35B (Atlas) |
 |---|---:|---:|
 | Single-session TPS | 24.1 tok/s | **128.1 tok/s** |
