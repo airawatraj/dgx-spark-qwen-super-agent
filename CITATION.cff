@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "Running Qwen 3.6-35B-A3B on DGX Spark with Atlas for Local Speed and Smarts Benchmarks"
+message: "If you use this setup, benchmark wrappers, or comparison data, please cite it as below."
+type: software
+authors:
+  - family-names: "Rawat"
+    given-names: "Rajendra Singh"
+    affiliation: "cogni.chat"
+    orcid: "https://orcid.org/0009-0007-5017-1341"
+repository-code: "https://github.com/airawatraj/dgx-spark-qwen-super-agent"
+abstract: >-
+  A lightweight technical implementation and benchmarking suite for running
+  RedHatAI/Qwen3.6-35B-A3B-NVFP4 on NVIDIA DGX Spark through the Atlas runtime.
+  This repository documents the local model-cache layout required by Atlas,
+  provides reproducible benchmark wrappers for speed, smarts, and arena-style
+  throughput testing, and tracks side-by-side comparison points against a prior
+  Nemotron DGX Spark run.
+keywords:
+  - "Qwen"
+  - "DGX Spark"
+  - "Atlas"
+  - "AI Agents"
+  - "NVFP4"
+  - "Performance Benchmarking"
+license: MIT
+version: 1.0.0
+date-released: "2026-05-22"
