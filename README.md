@@ -29,7 +29,7 @@ Running under the `Cogni-Brain` alias, this Qwen 3.6 setup solved it locally in 
 <video src="https://github.com/airawatraj/dgx-spark-qwen-super-agent/raw/main/assets/openwebui_logic_puzzle.mp4" controls="controls" muted="muted" width="100%"></video>
 
 
-
+![](https://github.com/airawatraj/dgx-spark-qwen-super-agent/blob/d398051f3ce19b7a137b492a13750fa72c7b1cbf/assets/openwebui_logic_puzzle.mp4)
 
 <p align="center"><i>Cogni-Brain reasoning through the Albert-Bernard-Cheryl puzzle at 130+ TPS—solving it in <b>under 30 seconds</b>, rivaling the speed of frontier models.</i></p>
 
