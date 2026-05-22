@@ -25,9 +25,7 @@ I came across a reddit thread that claimed ["There's not a SINGLE local LLM whic
 
 Running under the `Cogni-Brain` alias, this Qwen 3.6 setup solved it locally in under **30 seconds** due to the massive speed bump.
 
-
-<video src="https://github.com/airawatraj/dgx-spark-qwen-super-agent/raw/main/assets/openwebui_logic_puzzle.mp4" controls="controls" muted="muted" width="100%"></video>
-
+[![Cogni Brain Solving Epistemic Logic](https://img.youtube.com/vi/J7ArwUSpdRU/mqdefault.jpg)](https://www.youtube.com/watch?v=J7ArwUSpdRU)
 
 <p align="center"><i>Cogni-Brain reasoning through the Albert-Bernard-Cheryl puzzle at 130+ TPS—solving it in <b>under 30 seconds</b>, rivaling the speed of frontier models.</i></p>
 
