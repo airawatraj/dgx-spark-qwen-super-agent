@@ -4,9 +4,9 @@ I bought a DGX Spark to do real work: running serious local AI agents and traini
 
 *(If you are curious about the training side of this hardware, check out [SageGPT](https://github.com/airawatraj/sage-gpt), my 7.5M parameter Sanskrit SLM trained entirely from scratch on this same machine).*
 
-I previously [pushed a 120B Nemotron setup](https://github.com/airawatraj/dgx-spark-nemotron-super-agent) past the community benchmark records, but I hit a hard speed ceiling at ~24 TPS. I knew this hardware could deliver both deep smarts and blazing speed within its real single-node constraints. I went hunting for a setup that could do two things together:
+I previously tried to [push a 120B Nemotron setup](https://github.com/airawatraj/dgx-spark-nemotron-super-agent) past the community benchmark records for its league, but I hit a hard speed ceiling at ~24 TPS. I knew this hardware could deliver both deep smarts and blazing speed within its real single-node constraints. I went hunting for a setup that could do two things together:
 1. Solve the logic puzzles people call "unsolvable" for local models.
-2. Deliver the 100+ TPS speed the DGX Spark deserves.
+2. Deliver the 130+ TPS speed the DGX Spark deserves.
 
 `RedHatAI/Qwen3.6-35B-A3B-NVFP4` running on the **Atlas engine** turned out to be that gem.
 
@@ -15,27 +15,58 @@ This repo is a lightweight DGX Spark setup with the absolute minimum pieces need
 > ⚠️ **Personal workstation setup. Not for enterprise use. Use at your own risk.**
 
 ---
-## Requirement 
+## Requirements 
 
-I needed a local model with both Smarts and Speed.
+I needed a local model with both Smarts and Speed and ability to run 24x7 with a large context window for my real agentic workflow.
 
-### Solving a puzzle the community said no local LLM could crack
+### Solving a puzzle the community said no 'local' LLM could crack
 
-I came across a reddit thread that claimed ["There's not a SINGLE local LLM which can solve this logic puzzle"](https://www.reddit.com/r/LocalLLaMA/comments/1mblq5g/theres_not_a_single_local_llm_which_can_solve/) - only a few local models could do it at the time of posting.
+I came across a reddit thread that claimed ["There's not a SINGLE local LLM which can solve this logic puzzle"](https://www.reddit.com/r/LocalLLaMA/comments/1mblq5g/theres_not_a_single_local_llm_which_can_solve/) - only a couple of local models could do it at the time of posting.
 
 Running under the `Cogni-Brain` alias, this Qwen 3.6 setup solved it locally in under **30 seconds** due to the massive speed bump.
 
+
 [![Cogni Brain Solving Epistemic Logic](https://img.youtube.com/vi/J7ArwUSpdRU/mqdefault.jpg)](https://www.youtube.com/watch?v=J7ArwUSpdRU)
 
-<p align="center"><i>Cogni-Brain reasoning through the Albert-Bernard-Cheryl puzzle at 130+ TPS—solving it in <b>under 30 seconds</b>, rivaling the speed of frontier models.</i></p>
 
+<p align="center"><i>Cogni-Brain-2 reasoning through the Albert-Bernard-Cheryl puzzle at 130+ TPS—solving it in <b>under 30 seconds</b>, <b>rivaling the speed of frontier models!</b></i></p>
+
+### Agentic work
+
+Cogni-Brain-2 built complete HTML5 chess app via NemoHermes - pawn promotion,
+en passant, castling - autonomously. It utilized an existing skill it created via [Cogni-Brain](https://github.com/airawatraj/dgx-spark-nemotron-super-agent). Progress updates were delivered to Telegram throughout. But it was not as smooth as Nemotron 3 Super. I had to prompt it to continue once.
+
+<p align="center">
+  <img src="./assets/nemohermes_telegram_chess_build.png" width="260" alt="Telegram Progress">
+  <br><i>Mobile app creation update via Telegram in 2 minutes</i>
+</p>
 
 ## Benchmark Results
+
+### Official spark-arena Submission
+
+> Benchmarked using [llama-benchy](https://github.com/eugr/llama-benchy) with the standardised spark-arena methodology.
+> NemoHermes and Open WebUI containers were stopped during this run. Only spark-brain (vLLM) running.
+> Published result recorded with `llama-benchy v0.3.8.dev2+gff162bcfc`.
+
+| Metric | Result |
+|---|---|
+| Single session TPS (tg128) | **218.85 tok/s** |
+| Leaderboard Rank | **#2 Overall** (as of May 23, 2026) |
+| Runtime | **vLLM / Atlas** |
+| KV cache dtype | **NVFP4** |
+| Quantization | **NVFP4** |
+| Hardware | **Single DGX Spark (GB10)** |
+
+<p align="center">
+  <img src="./assets/spark_arena_leaderboard_qwen.png" width="800" alt="spark-arena leaderboard - May 23, 2026">
+  <br><i>spark-arena community leaderboard — Rank #2 Overall at 218.85 TPS — May 23, 2026</i>
+</p>
 
 ### Custom Script Benchmark (Single-Stream Latency)
 
 > These results were measured with the custom `benchmark_speed.py` script while Open WebUI and NemoHermes were active in the background.
-> Unlike vLLM, the Atlas engine utilizes native NVFP4 compute kernels and MTP K=2 speculative decoding to achieve these speeds without bogging down the host.
+> Unlike standard vLLM, the Atlas engine utilizes native NVFP4 compute kernels and MTP K=2 speculative decoding to achieve these speeds without bogging down the host.
 
 | Metric | Result |
 |---|---|
@@ -84,17 +115,45 @@ Where the 120B model scored 93/100 (struggling slightly with parameter precision
 
 ---
 
-## Comparison With My Nemotron Run
+## Compared to Prior Published Results
 
-This table tracks the performance leap achieved by migrating from the 120B Nemotron/vLLM stack to the 35B Qwen/Atlas stack on the exact same DGX Spark hardware.
+This table tracks the performance leap achieved by migrating from the 120B Nemotron stack to the 35B Qwen/Atlas stack, as well as how this setup stacks up in community at time of this test on the exact same DGX Spark hardware.
+
+(spark-arena, tg128) — official
+
+| Who | Model | TPS | Stack | Context |
+|---|---|---|---|---|
+| **[Cogni-Brain-2 (airawatraj)](https://spark-arena.com/benchmark/sub1779495971526)** | **Qwen 3.6-35B** | **218.85** | NVFP4 + Atlas | 131K |
+| [Raphael Amorim](https://spark-arena.com/benchmark/sub1778912561290) | Qwen 3.6-35B | 217.37 | NVFP4 + Atlas | 131K |
+| **[Cogni-Brain (airawatraj)](https://spark-arena.com/benchmark/sub1778644062716)**  | **Nemotron-120B** | **23.45** | NVFP4 + vLLM | 131K |
+| [Seth Hobson](https://spark-arena.com/benchmark/a3dd9b9f-d9a6-485b-af72-fd34150a8b7c) | Nemotron-120B | 21.66 | NVFP4 + vLLM | 131K |
+
+By dropping the memory ceiling to 0.75 to run real agents in the background, I hit the theoretical wall for long-context concurrency (100k+), but absolutely dominated the single-stream speed charts. 
+
+Happy to be proved wrong - let's keep extracting max juice out of Spark.
+---
+
+
+## Comparison With My Earlier Nemotron Run
+
+### Nemotron-120B vs. Qwen-35B on DGX Spark
+
+It is important to note that these are fundamentally different classes of models. The 120B Nemotron is an architectural giant built for heavy-duty, deep-reasoning tasks, while the Qwen 3.6-35B is a highly efficient, "agentic" power-house.
 
 | Metric | Nemotron-120B (vLLM) | Qwen 3.6-35B (Atlas) |
 |---|---:|---:|
-| Single-session TPS | 24.1 tok/s | **128.1 tok/s** |
-| Peak single-session TPS | 24.8 tok/s | **131.9 tok/s** |
-| 4-session Python TPS | 53.9 tok/s | **76.4 tok/s** |
-| Max working context | 130,753 tokens | **130,753 tokens** |
-| Smarts score | 93 / 100 | **100 / 100** |
+| **Generation Speed** | 23.45 tok/s | **218.85 tok/s** |
+| **Tool-Eval Score** | 93 / 100 | **100 / 100** |
+| **Reasoning Depth** | High (Deep Intuition) | High (Fast/Agentic) |
+| **Max Concurrency** | Stable (100K+) | Resource-Limited (65K) |
+| Max working context | 130,753 tokens | 130,753 tokens |
+
+### My Findings: Speed vs. Substance
+
+While the Qwen-35B setup is ~9x faster and achieved a perfect score on my automated tool-use benchmarks, I've observed that **reasoning isn't just about scores.** Nemotron-120B still possesses a "heavy" reasoning capability that feels more reliable for extremely ambiguous, open-ended logic. The Qwen-35B is undeniably faster and sharper for executing tools and structured tasks, but occasionally, it can feel "too fast"—it lacks that deliberate, multi-step contemplation that the 120B model provides. 
+
+Furthermore, while the Qwen stack is blazing fast, it is much more sensitive to memory constraints on the DGX Spark. I hit a performance cliff at high concurrency (100k context) that I didn't experience with the Nemotron, primarily because the Atlas/Speculative-Decoding stack is more memory-hungry. This setup is a trade-off: you gain massive responsiveness and agentic agility, but you sacrifice some of that "deep-thinking" headroom and stability under extreme load.
+
 
 ---
 
@@ -124,6 +183,7 @@ bash docker/start.sh
 # 4. Follow logs
 docker logs -f atlas-qwen36
 # Wait for "Speculative decoding: ENABLED" and "Listening on 0.0.0.0:8000"
+```
 
 ## Benchmark It
 
@@ -140,7 +200,7 @@ uv run benchmark/benchmark_speed_arena.py --save-result benchmark/results_arena.
 
 ## Repository Structure
 
-```markdown
+```text
 dgx-spark-qwen-super-agent/
 ├── README.md                    ← this file
 ├── CITATION.cff                 ← citation metadata
@@ -168,7 +228,6 @@ To hit peak throughput on the Atlas engine, several Docker-level and engine-leve
 | IPC Choking on batching | Docker default (64MB) | `--shm-size=16gb` |
 | Speculative depth | K=1 | `--num-drafts 1` (K=2) |
 | System swap thrashing | OS default | `vm.drop_caches=3` and swapoff |
-| Downstream API breaks | `Qwen3.6-35B` | `--served-model-name Cogni-Brain` |
 | Cache path mismatch | Direct dir mount | Hub-cache bridging with `refs/main` |
 
 
