@@ -28,7 +28,7 @@ Running under the `Cogni-Brain` alias, this Qwen 3.6 setup solved it locally in 
 
 <div align="center">
   <a href="https://www.youtube.com/watch?v=iyzYVyenO7I">
-    <img src="assets/openwebui_logic_puzzle.png" alt="Cogni Brain solving an epistemic logic puzzle locally" />
+    <img src="assets/local_ai_logic_puzzle_thumbnail.png" alt="Cogni Brain solving an epistemic logic puzzle locally" />
   </a>
   <p>
     <i>
@@ -38,6 +38,31 @@ Running under the `Cogni-Brain` alias, this Qwen 3.6 setup solved it locally in 
     </i>
   </p>
 </div>
+
+This benchmark matters because it tests epistemic state tracking rather than memorized pattern completion.
+
+### Architecture Overview
+
+```mermaid
+flowchart TD
+
+    A["NVIDIA DGX Spark<br/>GB10 Grace-Blackwell<br/>128GB Unified Memory"]
+
+    A --> B["Atlas Runtime<br/>NVFP4 + MTP K=2"]
+
+    B --> C["Qwen 3.6-35B<br/>Cogni-Brain-2"]
+    B --> D["Open WebUI / API"]
+    B --> E["NemoHermes Agent Runtime"]
+
+    C --> F["Epistemic Logic Puzzle<br/>~30s Solve Time"]
+    C --> G["100/100 Tool-Eval-Bench"]
+    E --> H["Autonomous Chess App"]
+    E --> I["Telegram Progress Updates"]
+
+    F --> J["218.85 TPS"]
+    G --> K["0.8s Median Turn Time"]
+```
+
 
 ### Agentic work
 
@@ -51,6 +76,8 @@ Cogni-Brain-2 built a complete HTML5 chess app via NemoHermes (including pawn pr
 ---
 
 ## Benchmark Results
+
+> Results may vary depending on runtime configuration, concurrency, context length, upstream benchmark versions, and memory allocation settings.
 
 ### Official spark-arena Submission
 
