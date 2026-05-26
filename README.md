@@ -24,7 +24,7 @@ I needed a local model with both smarts and speed, plus the ability to run 24x7 
 
 I came across a Reddit thread that claimed ["There's not a SINGLE local LLM which can solve this logic puzzle"](https://www.reddit.com/r/LocalLLaMA/comments/1mblq5g/theres_not_a_single_local_llm_which_can_solve/) - only a couple of local models could do it at the time of posting.
 
-Running under the `Cogni-Brain` alias, this Qwen 3.6 setup solved it locally in under **30 seconds** due to the massive speed bump.
+Running under the `Cogni-Brain` alias, this Qwen 3.6 setup solved it locally in about **30 seconds** due to the massive speed bump.
 
 Note: Results are not always consistent — this is a hard epistemic reasoning task, not a memorization benchmark
 
