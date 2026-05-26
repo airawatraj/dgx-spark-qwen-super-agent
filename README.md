@@ -26,6 +26,8 @@ I came across a Reddit thread that claimed ["There's not a SINGLE local LLM whic
 
 Running under the `Cogni-Brain` alias, this Qwen 3.6 setup solved it locally in under **30 seconds** due to the massive speed bump.
 
+Note: Results are not always consistent — this is a hard epistemic reasoning task, not a memorization benchmark
+
 <div align="center">
   <a href="https://www.youtube.com/watch?v=iyzYVyenO7I">
     <img src="assets/local_ai_logic_puzzle_thumbnail.png" alt="Cogni Brain solving an epistemic logic puzzle locally" />
@@ -161,7 +163,7 @@ This table tracks the performance leap achieved by migrating from the 120B Nemot
 | **[Cogni-Brain (airawatraj)](https://spark-arena.com/benchmark/sub1778644062716)** | **Nemotron-120B** | **23.45** | NVFP4 + vLLM | 131K |
 | [Seth Hobson](https://spark-arena.com/benchmark/a3dd9b9f-d9a6-485b-af72-fd34150a8b7c) | Nemotron-120B | 21.66 | NVFP4 + vLLM | 131K |
 
-By dropping the memory ceiling to 0.75 to run real agents in the background, I hit the theoretical wall for long-context concurrency (100k+), but absolutely dominated the single-stream speed charts. 
+By dropping the memory ceiling to 0.75 to run real agents in the background, I hit the theoretical wall for long-context concurrency (100k+), but landed at the top of the single-stream charts
 
 Happy to be proved wrong - let's keep extracting max juice out of Spark.
 
