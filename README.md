@@ -28,9 +28,15 @@ Running under the `Cogni-Brain` alias, this Qwen 3.6 setup solved it locally in 
 
 <div align="center">
   <a href="https://www.youtube.com/watch?v=iyzYVyenO7I">
-    <img src="assets/openwebui_logic_puzzle.png" alt="Cogni Brain Solving Epistemic Logic" />
+    <img src="assets/openwebui_logic_puzzle.png" alt="Cogni Brain solving an epistemic logic puzzle locally" />
   </a>
-  <p><i>Cogni-Brain-2 reasoning through the Albert-Bernard-Cheryl puzzle at 130+ TPS, solving it in <b>under 30 seconds</b> and <b>rivaling the speed of frontier models!</b></i></p>
+  <p>
+    <i>
+      Cogni-Brain-2 reasoning through the Albert–Bernard–Cheryl logic puzzle at about 218.85 TPS,
+      solving it in <b>about 30 seconds</b> with performance approaching frontier cloud models.
+      <b>Click the image above to watch the full run.</b>
+    </i>
+  </p>
 </div>
 
 ### Agentic work
