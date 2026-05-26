@@ -4,11 +4,11 @@ I bought a DGX Spark to do real work: running serious local AI agents and traini
 
 *(If you are curious about the training side of this hardware, check out [SageGPT](https://github.com/airawatraj/sage-gpt), my 7.5M parameter Sanskrit SLM trained entirely from scratch on this same machine).*
 
-I previously tried to [push a 120B Nemotron setup](https://github.com/airawatraj/dgx-spark-nemotron-super-agent) past the community benchmark records for its league, but I hit a hard speed ceiling at ~24 TPS. I knew this hardware could deliver both deep smarts and blazing speed within its real single-node constraints. I went hunting for a setup that could do two things together:
+I previously tried to [push a 120B Nemotron setup](https://github.com/airawatraj/dgx-spark-nemotron-super-agent) past the community benchmark records for its league, but I hit a hard speed ceiling at ~24 TPS. I knew this hardware could deliver both strong reasoning and practical speed within its real single-node constraints. I went hunting for a setup that could do two things together:
 1. Solve the logic puzzles people call "unsolvable" for local models.
 2. Deliver the best practical speed this DGX Spark hardware could sustain for real work.
 
-`RedHatAI/Qwen3.6-35B-A3B-NVFP4` running on the **Atlas engine** turned out to be that gem.
+`RedHatAI/Qwen3.6-35B-A3B-NVFP4` running on the **Atlas engine** turned out to be the right balance.
 
 This repo is a lightweight DGX Spark setup with the absolute minimum pieces needed to download the model, format the cache, launch the highly-optimized Atlas container, and reproduce the speed and smarts benchmarks locally.
 
