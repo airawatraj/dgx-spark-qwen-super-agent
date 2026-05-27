@@ -8,7 +8,7 @@ I previously tried to [push a 120B Nemotron setup](https://github.com/airawatraj
 1. Solve the logic puzzles people call "unsolvable" for local models.
 2. Deliver the best practical speed this DGX Spark hardware could sustain for real work.
 
-`RedHatAI/Qwen3.6-35B-A3B-NVFP4` running on the **Atlas engine** turned out to be the right balance.
+[RedHatAI/Qwen3.6-35B-A3B-NVFP4](https://hfviewer.com/RedHatAI/Qwen3.6-35B-A3B-NVFP4) running on the **Atlas engine** turned out to be the right balance.
 
 This repo is a lightweight DGX Spark setup with the absolute minimum pieces needed to download the model, format the cache, launch the highly-optimized Atlas container, and reproduce the speed and smarts benchmarks locally.
 
