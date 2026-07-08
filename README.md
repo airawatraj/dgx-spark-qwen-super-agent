@@ -4,6 +4,14 @@ I bought a DGX Spark to do real work: running serious local AI agents and traini
 
 *(If you are curious about the training side of this hardware, check out [SageGPT](https://github.com/airawatraj/sage-gpt), my 7.5M parameter Sanskrit SLM trained entirely from scratch on this same machine).*
 
+![Python](https://img.shields.io/badge/python-3.10%2B-blue?logo=python&logoColor=white)
+![Base Model](https://img.shields.io/badge/base%20model-Qwen3.6--35B-limegreen)
+![Runtime](https://img.shields.io/badge/runtime-Atlas-orange)
+![Hardware](https://img.shields.io/badge/hardware-NVIDIA%20DGX%20Spark-brightgreen?logo=nvidia&logoColor=white)
+![Speed](https://img.shields.io/badge/speed-219%20tok%2Fs-success)
+![Tool Eval](https://img.shields.io/badge/tool--eval-100%2F100-success)
+![Mode](https://img.shields.io/badge/mode-fast%20path-black)
+
 I previously tried to [push a 120B Nemotron setup](https://github.com/airawatraj/dgx-spark-nemotron-super-agent) past the community benchmark records for its league, but I hit a hard speed ceiling at ~24 TPS. I knew this hardware could deliver both strong reasoning and practical speed within its real single-node constraints. I went hunting for a setup that could do two things together:
 1. Solve the logic puzzles people call "unsolvable" for local models.
 2. Deliver the best practical speed this DGX Spark hardware could sustain for real work.
